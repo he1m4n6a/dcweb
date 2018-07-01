@@ -76,8 +76,8 @@ def upload_files(request):
                 logging.info('[+] %s项目扫描结束, 文件md5值是%s' %(firstname, md5file))
             except Exception as e:
                 print str(e)
-                return render(request, 'uploadfile.html', {'error': '命令执行错误，请联系管理员！'})
                 logging.info('[-] %s项目扫描出错, 文件md5值是%s' %(firstname, md5file))
+                return render(request, 'uploadfile.html', {'error': '命令执行错误，请联系管理员！'})                
 
             # 网页形式report
             absfilename = pwd + os.sep + output
@@ -85,7 +85,11 @@ def upload_files(request):
             if not os.path.exists(absreport):
                 os.makedirs(absreport)
             absmd5name = absreport + os.sep + md5file + '.html'
-            os.system('mv %s %s' %(absfilename, absmd5name))
+            try:
+                os.system('mv %s %s' %(absfilename, absmd5name))
+            except Exception as e:
+                logging.info('[-] %s项目扫描出错, 文件md5值是%s' %(firstname, md5file))
+                return render(request, 'uploadfile.html', {'error': '命令执行错误，请联系管理员！'})                
             report_addr = Host + os.sep +  'report' + os.sep + md5file
             return render(request, 'uploadfile.html', {'success':report_addr})
         else:
