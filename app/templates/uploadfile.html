@@ -1,0 +1,83 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <meta charset="UTF-8">  
+    <title>三方依赖库扫描</title> 
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>  
+<body>  
+	<div class="container-fluid">
+	<div id="loading" class="row-fluid">
+		<div class="span12">
+			<h3 class="text-info">
+				三方依赖库扫描系统
+			</h3>
+			<br />
+			<div class="hero-unit well">
+				<p>
+					Dependency-Check 是一款分析软件构成的工具，他会检测项目中依赖项的公开披露漏洞。Dependency-Check 常用于扫描java和.NET程序，实验性的分析器有python、ruby、php以及nodejs。这些作为实验性研究是因为他们的高误报率。
+				</p>
+				<p>
+					<a class="btn btn-primary btn-large" target="_blank" href="https://github.com/jeremylong/DependencyCheck">参看更多 »</a>
+				</p>
+			</div>
+			<blockquote>
+				<p><strong><font size="3">用法：</font></strong></p>
+				<p><font size="3">&emsp;打包项目三方依赖库代码提交扫描</font></p>
+				<p><font size="3"><strong>注意点：</strong></font></p>
+				<p><font size="3">&emsp;1. 可以扫war包和单个jar文件，扫描会自动更新cve库，初次使用时间会比较久</font></p>
+				<p><font size="3">&emsp;2. 依赖库只在配置文件扫不出结果，需要编译后完整的库</font></p>
+			</blockquote>
+			<br />
+			<br />
+			<form id="test-form" action="{% url 'upload'%}" enctype="multipart/form-data" method="post">  
+				{% csrf_token %}
+				<fieldset>
+					<legend>待扫描项目的依赖库文件包上传：</legend>
+					    <input type="file" name="uploadfile">
+    					<br />
+    					<button id="fat-btn" class="btn btn-danger" data-loading-text="（=￣ω￣=）任务执行中...." type="submit">开始扫描</button>
+						<script>
+						    $(function() {
+						        $("#fat-btn").click(function(){
+						            $(this).button('loading');
+						        });
+						    });  
+						</script>
+				</fieldset>
+			</form>
+
+			{% if success %}
+				<br/>
+				<div class="alert alert-success">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+				<h4>
+					扫描结束!
+				</h4> <strong>报告地址：</strong> <a href="{{success}}" target="_blank">{{success}}</a>
+				</div>
+			{% endif %}
+			{% if error %}
+				<br />
+				<div class="alert alert-error">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+				<h4>
+					提示!
+				</h4> <strong>错误!</strong> {{error}}
+				</div>
+			{% endif %}
+			{% if warning %}
+				<br />
+				<div class="alert alert-info">
+					<button type="button" class="close" data-dismiss="alert">×</button>
+				<h4>
+					提示!
+				</h4> <strong>警告!</strong> {{warning}}
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+</body>  
+</html>  
