@@ -1,0 +1,9 @@
+version: '2'
+services:
+ web:
+  build: .
+  volumes:
+   - .:/dcweb
+  image: he1m4n6a/dcweb
+  ports:
+   - "8888:8888"
