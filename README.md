@@ -12,17 +12,22 @@ Dependency-Check 是一款分析软件构成的工具，他会检测项目中依
 
 # 安装
 ### 普通安装
-1. 下载本项目到本地，确保本地安装了java环境
+```
+1. git clone git@github.com:he1m4n6a/dcweb.git
 2. pip -r requirements.txt
 3. 从 https://bintray.com/jeremy-long/owasp/dependency-check 下载dependency-check最新二进制版本，放到dcweb/dependency-check目录下
-4. 修改app/views.py的监听地址和端口，默认为localhost:8888
-5. 如果不是监听本地，需要添加ip白名单准入，修改dcweb/settings.py中的ALLOWED_HOSTS
-6. python manage.py runserver 0.0.0.0:8888 运行即可
+4. apt-get install default-jdk 安装java环境
+5. python manage.py runserver 0.0.0.0:8888 运行即可
+```
 
 ### docker安装
+```
 1. cd docker-deploy
 2. docker build
 3. docker up -d
+```
+
+默认运行在localhost和8888端口，开启debug，改其他配置修改dcweb/settings.py文件
 
 # 使用方法
 ![](screen.png)
