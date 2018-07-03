@@ -24,11 +24,13 @@ Dependency-Check 是一款分析软件构成的工具，他会检测项目中依
 ```
 1. git clone git@github.com:he1m4n6a/dcweb.git
 2. cd docker-deploy
-3. docker build
-4. docker up -d
+3. docker-compose build
+4. docker-compose up -d
 ```
 
-默认运行在localhost和8888端口，开启debug，改其他配置修改dcweb/settings.py文件
+默认运行在localhost和8888端口，开启debug，改其他配置修改dcweb/settings.py文件。
+
+推荐docker安装，部署简单，移植方便。
 
 # 使用方法
 ![](screen.png)
