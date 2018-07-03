@@ -42,7 +42,7 @@ def upload_files(request):
         f = request.FILES.get("uploadfile")
         if f:
             # 设置白名单后缀
-            allow_suffix = ['tar', '7z', 'zip', 'gz', 'war', 'so', 'rar', 'bz2', 'arj', 'cab', 'lzh','iso', 'UUE']
+            allow_suffix = ['tar', '7z', 'zip', 'gz', 'war', 'so', 'rar', 'bz2', 'arj', 'cab', 'lzh','iso', 'UUE', 'jar']
             file_suffix = f.name.split(".")[-1].lower()        
             if file_suffix not in allow_suffix: 
                 return render(request, 'uploadfile.html', {'warning': '文件格式错误，请重新上传！'})
