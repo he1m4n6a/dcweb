@@ -10,7 +10,7 @@ Dependency-Check 是一款分析软件构成的工具，他会检测项目中依
 
 如果公司代码发布不多，推荐使用第二种方法，安全人员好跟进并给出针对性建议。
 
-新项目[cve—db](https://github.com/he1m4n6a/cve-db)是一款生成cve数据库的工具，可以配合Dependcy-Check使用。
+新项目[cve-db](https://github.com/he1m4n6a/cve-db)是一款生成cve数据库的工具，可以配合Dependcy-Check使用。
 
 # 安装
 ### 普通安装
